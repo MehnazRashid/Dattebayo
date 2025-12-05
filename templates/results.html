@@ -8,18 +8,14 @@
 
         {% for char in characters %}
         <div class="card">
-
-            <!-- Character Image (fallback to placeholder if not present) -->
             <img
                 src="{{ (char.images[0] if char.images else url_for('static', filename='placeholder.png')) }}"
                 alt="{{ char.name }}"
                 class="char-img"
             >
 
-            <!-- Character Name -->
-            <h2 class="char-name">{{ char.name }}</h2>
 
-            <!-- Clan (nested under personal.clan) -->
+            <h2 class="char-name">{{ char.name }}</h2>
             <p><strong>Clan:</strong>
                 {% if char.personal and char.personal.clan %}
                     {{ char.personal.clan }}
@@ -28,7 +24,7 @@
                 {% endif %}
             </p>
 
-            <!-- Village / Affiliation (show first affiliation if available) -->
+           
             <p><strong>Village / Affiliation:</strong>
                 {% if char.personal and char.personal.affiliation %}
                     {{ char.personal.affiliation[0] }}

@@ -136,7 +136,7 @@ p {
     margin-top: 10px;
 }
 
-/* Center cards nicely in rows */
+
 .card-container {
     display: flex;
     flex-wrap: wrap;

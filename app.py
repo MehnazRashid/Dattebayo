@@ -18,7 +18,6 @@ def search():
 
     user_word = user_input.lower()
 
-    # API request
     try:
         resp = requests.get(
             f"{BASE_URL}/characters",
@@ -33,7 +32,6 @@ def search():
 
     data = resp.json()
 
-    # Extract characters
     if isinstance(data, dict) and "characters" in data:
         characters = data["characters"]
     else:
@@ -42,7 +40,6 @@ def search():
     if not characters:
         return render_template('index.html', error=f'No character named "{user_input}" was found.')
 
-    # Full word match only
     matches = []
     for c in characters:
         words = c["name"].lower().split()
@@ -52,7 +49,6 @@ def search():
     if not matches:
         return render_template('index.html', error=f'No character named "{user_input}" was found.')
 
-    # Show all exact-word matches
     return render_template(
         'results.html',
         characters=matches,
