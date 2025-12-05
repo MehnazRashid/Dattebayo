@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <h1 class="title">Search Results</h1>
+    <p class="subtitle">Showing results for "<strong>{{ query }}</strong>"</p>
+    <div class="card-container">
+
+        {% for char in characters %}
+        <div class="card">
+
+            <!-- Character Image (fallback to placeholder if not present) -->
+            <img
+                src="{{ (char.images[0] if char.images else url_for('static', filename='placeholder.png')) }}"
+                alt="{{ char.name }}"
+                class="char-img"
+            >
+
+            <!-- Character Name -->
+            <h2 class="char-name">{{ char.name }}</h2>
+
+            <!-- Clan (nested under personal.clan) -->
+            <p><strong>Clan:</strong>
+                {% if char.personal and char.personal.clan %}
+                    {{ char.personal.clan }}
+                {% else %}
+                    Unknown
+                {% endif %}
+            </p>
+
+            <!-- Village / Affiliation (show first affiliation if available) -->
+            <p><strong>Village / Affiliation:</strong>
+                {% if char.personal and char.personal.affiliation %}
+                    {{ char.personal.affiliation[0] }}
+                {% else %}
+                    Unknown
+                {% endif %}
+            </p>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+  <a href="/" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+
+</div>
+
+{% endblock %}

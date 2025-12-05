@@ -1,0 +1,9 @@
+Flask==3.0.0
+requests==2.31.0
+
+
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+venv\Scripts\Activate.ps1
+venv\Scripts\activate
+python app.py
